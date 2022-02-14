@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 6900 || process.env.PORT;
+const dotenv = require('dotenv');
+const port =  6900 || process.env.PORT;
 
 // require("./middleware/middleware")
 require("./db/connections");
 
-
+dotenv.config({path : './config.env'});
 
 app.use(express.json());
 // middleware()
@@ -21,6 +22,7 @@ app.use(require('./routes/auth'));
 
 
 app.get("/about",middleware, (req, res) =>{
+    res.cookie("test", "vik")
     res.send("About Page");
 })
 
